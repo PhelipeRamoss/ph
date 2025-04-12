@@ -1,0 +1,81 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Aplicativo Operação Matemática
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- DISPLAY -->
+  <ion-item>
+     <ion-input type="text" [(ngModel)]="display" label=" " fill="solid"></ion-input>
+     <!-- <ion-input type="number" [(ngModel)]="valor2" label="Valor 2" label-placement="floating" fill="solid" placeholder="Digite o segundo numero"></ion-input> -->
+  </ion-item>
+
+    <!-- RESULTADO -->
+    <ion-item>
+      <ion-text>{{resultado}}</ion-text>
+   </ion-item>
+  
+  <!-- PRIMEIRA LINHA DE BOTÕES -->
+  <ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col><ion-button shape="round" fill="outline" (click)="limpadisplay()" expand="full">C</ion-button></ion-col>
+      <ion-col><ion-button shape="round" fill="outline" (click)="apagadigito()" expand="full"><ion-icon name="backspace-outline"></ion-icon></ion-button></ion-col>
+      <ion-col><ion-button shape="round" fill="outline" (click)="calculaporcentagem()" expand="full">%</ion-button></ion-col>
+      <ion-col><ion-button shape="round" fill="outline" (click)="digita('/')" expand="full">/</ion-button></ion-col>
+    </ion-row>   
+  </ion-grid>
+  </ion-item>
+
+  <!-- SEGUNDA LINHA DE BOTÕES -->
+  <ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-button shape="round" fill="outline" (click)="digita('7')" expand="full">7</ion-button></ion-col>
+        <ion-col><ion-button shape="round" fill="outline" (click)="digita('8')" expand="full">8</ion-button></ion-col>
+        <ion-col><ion-button shape="round" fill="outline" (click)="digita('9')" expand="full">9</ion-button></ion-col>
+        <ion-col><ion-button shape="round" fill="outline" (click)="digita('*')" expand="full">x</ion-button></ion-col>
+      </ion-row>   
+    </ion-grid>
+    </ion-item>
+  
+    <!-- TERCEIRA LINHA DE BOTÕES -->
+  <ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-button shape="round" fill="outline" (click)="digita('4')" expand="full">4</ion-button></ion-col>
+        <ion-col><ion-button shape="round" fill="outline" (click)="digita('5')" expand="full">5</ion-button></ion-col>
+        <ion-col><ion-button shape="round" fill="outline" (click)="digita('6')" expand="full">6</ion-button></ion-col>
+        <ion-col><ion-button shape="round" fill="outline" (click)="digita('-')" expand="full">-</ion-button></ion-col>
+      </ion-row>   
+    </ion-grid>
+    </ion-item>
+
+    <!-- QUARTA LINHA DE BOTÕES -->
+  <ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-button shape="round" fill="outline" (click)="digita('1')" expand="full">1</ion-button></ion-col>
+        <ion-col><ion-button shape="round" fill="outline" (click)="digita('2')" expand="full">2</ion-button></ion-col>
+        <ion-col><ion-button shape="round" fill="outline" (click)="digita('3')" expand="full">3</ion-button></ion-col>
+        <ion-col><ion-button shape="round" fill="outline" (click)="digita('+')" expand="full">+</ion-button></ion-col>
+      </ion-row>   
+    </ion-grid>
+    </ion-item>
+
+    <!-- QUINTA LINHA DE BOTÕES -->
+  <ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-button shape="round" fill="outline" (click)="digita('1')" expand="full"><ion-icon name="logo-react"></ion-icon></ion-button></ion-col>
+        <ion-col><ion-button shape="round" fill="outline" (click)="digita('0')" expand="full">0</ion-button></ion-col>
+        <ion-col><ion-button shape="round" fill="outline" (click)="digita('.')" expand="full">.</ion-button></ion-col>
+        <ion-col><ion-button color="secondary" shape="round" (click)="operacao()" expand="full">=</ion-button></ion-col>
+      </ion-row>   
+    </ion-grid>
+    </ion-item>
+  
+</ion-content>
