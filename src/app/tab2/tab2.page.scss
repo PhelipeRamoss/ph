@@ -1,0 +1,18 @@
+ion-col {
+    background-color: #206ac5;
+    border: solid 1px #fff;
+    color: #fff;
+    text-align: center;
+    height: 200px;
+  }
+
+
+  .titulo-centralizado {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 18px; /* opcional */
+  }
+  

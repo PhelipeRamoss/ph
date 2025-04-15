@@ -1,0 +1,285 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      APLICATIVOS DE CÁLCULO
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button style="height: 180px; font-size: 18px;" id="open-modal1" expand="block">MOEDA  
+          <ion-icon name="cash-outline"></ion-icon></ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button style="height: 180px; font-size: 18px;" id="open-modal2" expand="block">
+          TEMPERATURA
+          <ion-icon name="thermometer-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button style="height: 180px; font-size: 18px;" id="open-modal3" expand="block">
+          IMC
+          <ion-icon name="medkit-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button style="height: 180px; font-size: 18px;" id="open-modal4" expand="block">
+          FINANÇAS
+          <ion-icon name="wallet-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Inicio do MODAL CONVERSOR MOEDA -->
+  <ion-modal trigger="open-modal1" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-title class="titulo-centralizado">Conversor Moeda</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="calcMoeda()" [strong]="true">Converter</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-input
+            label="Valor"
+            labelPlacement="stacked"
+            type="text"
+            placeholder="Informe o valor"
+            [(ngModel)]="valor"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-select [(ngModel)]="moeda1" aria-label="Moeda1" interface="popover" placeholder="Informe a Moeda">
+            <ion-select-option value="real">Real</ion-select-option>
+            <ion-select-option value="dolar">Dolar</ion-select-option>
+            <ion-select-option value="euro">Euro</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-select [(ngModel)]="moeda2" aria-label="Moeda2" interface="popover" placeholder="Informe a Moeda">
+            <ion-select-option value="real">Real</ion-select-option>
+            <ion-select-option value="dolar">Dolar</ion-select-option>
+            <ion-select-option value="euro">Euro</ion-select-option>
+          </ion-select>
+        </ion-item>
+        
+        <ion-item>
+          <ion-input
+            label="Resultado"
+            labelPlacement="stacked"
+            type="text"
+            placeholder="Resultado"
+            [(ngModel)]="resultado"
+          ></ion-input>
+        </ion-item>
+
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+<!-- Início do MODAL TEMPERATURA -->
+<ion-modal trigger="open-modal2" (willDismiss)="onWillDismiss($event)">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="cancel()">Cancelar</ion-button>
+        </ion-buttons>
+        <ion-title class="titulo-centralizado">Conversor de Temperaturas</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="convertTemperature()" [strong]="true">Converter</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-item>
+        <ion-input
+          label="Temperatura"
+          labelPlacement="stacked"
+          type="number"
+          placeholder="Informe a temperatura"
+          [(ngModel)]="temperatureValue"
+          name="temperatureValue"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-select
+          aria-label="Unidade de Origem"
+          interface="popover"
+          placeholder="Selecione a unidade de origem"
+          [(ngModel)]="fromUnit"
+          name="fromUnit"
+        >
+          <ion-select-option value="Celsius">Celsius</ion-select-option>
+          <ion-select-option value="Fahrenheit">Fahrenheit</ion-select-option>
+          <ion-select-option value="Kelvin">Kelvin</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-select
+          aria-label="Unidade de Destino"
+          interface="popover"
+          placeholder="Selecione a unidade de destino"
+          [(ngModel)]="toUnit"
+          name="toUnit"
+        >
+          <ion-select-option value="Celsius">Celsius</ion-select-option>
+          <ion-select-option value="Fahrenheit">Fahrenheit</ion-select-option>
+          <ion-select-option value="Kelvin">Kelvin</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Resultado"
+          labelPlacement="stacked"
+          type="text"
+          placeholder="Resultado"
+          [value]="result"
+          readonly
+        ></ion-input>
+      </ion-item>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+
+<!-- Inicio do MODAL IMC -->
+<ion-modal trigger="open-modal3" (willDismiss)="onWillDismiss($event)">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="cancel()">Cancelar</ion-button>
+        </ion-buttons>
+        <ion-title class="titulo-centralizado">Cálculo IMC</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="calculateIMC()" [strong]="true">Calcular</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-item>
+        <ion-input
+          label="Peso"
+          labelPlacement="stacked"
+          type="number"
+          placeholder="Informe o seu peso"
+          [(ngModel)]="weight"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Altura"
+          labelPlacement="stacked"
+          type="number"
+          placeholder="Informe a altura ex: 1.72"
+          [(ngModel)]="height"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Resultado"
+          labelPlacement="stacked"
+          type="text"
+          [value]="imcResult"
+          readonly
+        ></ion-input>
+      </ion-item>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+
+
+
+<!-- Início do MODAL FINANÇAS -->
+<ion-modal trigger="open-modal4" (willDismiss)="onWillDismiss($event)">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="cancel()">Cancelar</ion-button>
+        </ion-buttons>
+        <ion-title class="titulo-centralizado">Conversor Finanças</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="confirm()" [strong]="true">Calcular</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <!-- Campo: Valor Inicial -->
+      <ion-item>
+        <ion-input
+          label="Valor"
+          labelPlacement="stacked"
+          type="number"
+          placeholder="Informe o valor inicial"
+          [(ngModel)]="finValor"
+        ></ion-input>
+      </ion-item>
+
+      <!-- Campo: Taxa -->
+      <ion-item>
+        <ion-input
+          label="Taxa (%)"
+          labelPlacement="stacked"
+          type="number"
+          placeholder="Informe a taxa de juros"
+          [(ngModel)]="finTaxa"
+        ></ion-input>
+      </ion-item>
+
+      <!-- Campo: Período -->
+      <ion-item>
+        <ion-input
+          label="Período (meses)"
+          labelPlacement="stacked"
+          type="number"
+          placeholder="Informe o período"
+          [(ngModel)]="finPeriodo"
+        ></ion-input>
+      </ion-item>
+
+      <!-- Resultado (apenas leitura) -->
+      <ion-item>
+        <ion-input
+          label="Resultado"
+          labelPlacement="stacked"
+          type="text"
+          [value]="finResultado"
+          readonly
+        ></ion-input>
+      </ion-item>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+
+
+
+
+
+
+ 
+</ion-content>
